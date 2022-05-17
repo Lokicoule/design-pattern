@@ -8,5 +8,11 @@ export const createSubscribable = <MessageType>() => {
     publish(msg: MessageType): void {
       subscribers.forEach((cb) => cb(msg));
     },
+    size() {
+      return subscribers.size;
+    },
+    cleanAll() {
+      subscribers.forEach((cb) => subscribers.delete(cb));
+    },
   };
 };

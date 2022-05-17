@@ -16,4 +16,12 @@ export class Subscribable<MessageType> implements ISubscribable<MessageType> {
   publish(msg: MessageType): void {
     this.subscribers.forEach((cb) => cb(msg));
   }
+
+  cleanAll(): void {
+    this.subscribers.forEach((cb) => this.subscribers.delete(cb));
+  }
+
+  size(): number {
+    return this.subscribers.size;
+  }
 }
